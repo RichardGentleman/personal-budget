@@ -1,0 +1,20 @@
+.remaining-budget {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.remaining-budget__logo {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+}
+
+.remaining-budget__text--medium {
+  font-size: 1.7rem;
+}
+
+.remaining-budget__text--small {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

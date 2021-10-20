@@ -1,0 +1,26 @@
+.item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  background-color: #1c77ee;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+.item__name {
+  font-size: 1.3rem;
+  margin: 0 1rem;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgb(114, 114, 114);
+}
+
+.item__price {
+  text-shadow: 1px 1px 1px rgb(114, 114, 114);
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}

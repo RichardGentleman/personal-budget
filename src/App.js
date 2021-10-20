@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Items from "./components/Items";
+import Form from "./components/Form";
+import User from "./components/User";
+import RemainingBudget from "./components/RemainingBudget";
 
-function App() {
+import "./App.css";
+
+const DUMMY_EXPENSES = [
+  {
+    id: "e1",
+    name: "Groceries",
+    price: 115,
+  },
+  {
+    id: "e2",
+    name: "Phone Bill",
+    price: 85,
+  },
+];
+
+const App = () => {
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [remainingBudget, setRemainingBudget] = useState(1800);
+
+  const enteredDataHandler = (enteredData) => {
+    setExpenses((previousExpenses) => {
+      return [enteredData, ...previousExpenses];
+    });
+
+    setRemainingBudget(() => {
+      const previousData = expenses.reduce(
+        (a, v) => (a = parseInt(a) + parseInt(v.price)),
+        0
+      );
+      return 2000 - (previousData + +parseInt(enteredData.price));
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="heading__large">Personal Budget</h1>
+      <User />
+      <RemainingBudget remainingBudget={remainingBudget} />
+      <Form newItemEnteredData={enteredDataHandler} />
+      <Items expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App;
