@@ -19,9 +19,21 @@ const DUMMY_EXPENSES = [
   },
 ];
 
+const yourBudget = 2000;
+let onStartExpenses = [0];
+
+for (let i = 0; i < DUMMY_EXPENSES.length; i++) {
+  onStartExpenses = parseInt(onStartExpenses) + parseInt(DUMMY_EXPENSES[i].price);
+}
+
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-  const [remainingBudget, setRemainingBudget] = useState(1800);
+  const [remainingBudget, setRemainingBudget] = useState(yourBudget - onStartExpenses);
+
+  let currentExpenses = [0];
+  for (let i = 0; i < expenses.length; i++) {
+    currentExpenses = parseInt(currentExpenses) + parseInt(expenses[i].price);
+  }
 
   const enteredDataHandler = (enteredData) => {
     setExpenses((previousExpenses) => {
@@ -29,11 +41,7 @@ const App = () => {
     });
 
     setRemainingBudget(() => {
-      const previousData = expenses.reduce(
-        (a, v) => (a = parseInt(a) + parseInt(v.price)),
-        0
-      );
-      return 2000 - (previousData + +parseInt(enteredData.price));
+      return yourBudget - (currentExpenses + parseInt(enteredData.price));
     });
   };
 
